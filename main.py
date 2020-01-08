@@ -9,6 +9,7 @@ def parse_arguments():
     parser.add_argument("name",
                         help='''The name of the person you want to know
                         the birthday of.''')
+    parser.add_argument("-v", help="Increase verbosity", action="store_true")
     parser.add_argument("--version", action="version", version="1.0")
     args = parser.parse_args()
     return args
@@ -16,7 +17,7 @@ def parse_arguments():
 if __name__ == "__main__":
     args = parse_arguments()
     name = args.name
-    birthday = birthdays.return_birthday(name)
+    birthday = birthdays.return_birthday(name, verbosity)
     # if the person is not found in the dictionary
     if not birthday:
         print("Sorry, we don't have {}'s birthday".format(name))

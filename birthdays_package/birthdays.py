@@ -22,7 +22,7 @@ def print_birthdays():
         print(name)
 
 
-def return_birthday(name):
+def return_birthday(name, verbosity):
     """print the birthday of a person
 
     The birthdays dictionary contains names as keys and birthdays as values.
@@ -32,11 +32,16 @@ def return_birthday(name):
 
     :param name: the name of the person
     :type name: string
+    :param verbosity: The verbosity wanted by the user
+    :type verbosity: Boolean
     :return: The birthday of the person passed as parameter or False
     :rtype: String or Boolean
     """
     # if the name is present in the dictionary
+    if verbosity:
+        print("Started looking for {}'s birthday".format(name))
     if name in birthdays:
         return birthdays[name]
     else:
         return False
+    
