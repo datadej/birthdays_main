@@ -1,6 +1,18 @@
-from birthdays_package import birthdays
+import argparse
 import sys
+from birthdays_package import birthdays
 
+def parse_arguments(currencies, companies):
+    parser = argparse.ArgumentParser(
+            description="Get name of someone you want to know the birthday of",
+            prog="birthdays")
+    parser.add_argument("name",
+                        help='''The name of the person you want to know
+                        the birthday of.''')
+    parser.add_argument("--version", action="version", version="1.0")
+    args = parser.parse_args()
+    return args
+    
 # if the user correctly provides a person name
 if len(sys.argv) > 1:
     name = sys.argv[1]
