@@ -15,24 +15,26 @@ def parse_arguments(people):
     parser = argparse.ArgumentParser(
             description="Get name of someone you want to know the birthday of",
             prog="birthdays")
+    # people infos can be added in the csv file in birthdays_package/data/
     parser.add_argument("name", choices = people,
                         help='''The name of the person you want to know
                         the birthday of.''')
+    # one level of verbosity
     parser.add_argument("-v", help="Increase verbosity", action="store_true")
     parser.add_argument("--version", action="version", version="1.0")
     args = parser.parse_args()
     return args
 
 if __name__ == "__main__":
+    # get people dictionary to retrieve the allowed names
     people = data_reader.parse_allowed_people(people_datafile)
     args = parse_arguments(list(people.keys()))
-    name = args.name
-    birthday = birthdays.return_birthday(name, people, args.v)
+    birthday = birthdays.return_birthday(args.name, people, args.v)
     # if the person is not found in the dictionary
     if not birthday:
-        print("Sorry, we don't have {}'s birthday".format(name))
+        print("Sorry, we don't have {}'s birthday".format(args.name))
     else:
-        print("{}' birthday is: {}".format(name, birthday))
+        print("{}' birthday is: {}".format(args.name, birthday))
 
 else:
     print("Please tell me the person you want to know the birthday of.")
