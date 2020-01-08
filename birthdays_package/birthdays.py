@@ -35,6 +35,7 @@ def return_birthday(name):
     :return: The birthday of the person passed as parameter or False
     :rtype: String or Boolean
     """
+    # if the name is present in the dictionary
     if name in birthdays:
         return birthdays[name]
     else:
