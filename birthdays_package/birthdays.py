@@ -25,14 +25,15 @@ def return_birthday(name):
     
     The birthdays dictionary contains names as keys and birthdays as values.
     When this function is invoked, it returns the birthday of the person
-    received as a parameter.
+    received as a parameter if the value exists in the dictionary, False
+    otherwise.
     
     :param name: the name of the person
     :type name: string
-    :return: None
-    :rtype: None
+    :return: The birthday of the person passed as parameter or False
+    :rtype: String or Boolean
     """
     if name in birthdays:
-        print('{}\'s birthday is {}.'.format(name, birthdays[name]))
+        return birthdays[name]
     else:
-        print('Sadly, we don\'t have {}\'s birthday.'.format(name))
+        return False
