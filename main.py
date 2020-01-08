@@ -1,5 +1,4 @@
 import argparse
-import sys
 from birthdays_package import birthdays
 
 def parse_arguments():
@@ -17,7 +16,7 @@ def parse_arguments():
 if __name__ == "__main__":
     args = parse_arguments()
     name = args.name
-    birthday = birthdays.return_birthday(name, verbosity)
+    birthday = birthdays.return_birthday(name, args.v)
     # if the person is not found in the dictionary
     if not birthday:
         print("Sorry, we don't have {}'s birthday".format(name))
