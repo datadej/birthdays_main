@@ -8,26 +8,28 @@ birthdays = {
 
 def print_birthdays():
     """print names of people in birthdays dictionary
-    
+
     The birthdays dictionary contains names as keys and birthdays as values.
-    When the function is invoked, it returns the names of the people in the 
+    When the function is invoked, it returns the names of the people in the
     dictionary built in the program
 
     :return: None
     :rtype: Boolean
     """
-    print('Welcome to the birthday dictionary. We know the birthdays of these people:')
+    print('''Welcome to the birthday dictionary.
+          We know the birthdays of these people:''')
     for name in birthdays:
         print(name)
 
+
 def return_birthday(name):
     """print the birthday of a person
-    
+
     The birthdays dictionary contains names as keys and birthdays as values.
     When this function is invoked, it returns the birthday of the person
     received as a parameter if the value exists in the dictionary, False
     otherwise.
-    
+
     :param name: the name of the person
     :type name: string
     :return: The birthday of the person passed as parameter or False

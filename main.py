@@ -3,7 +3,7 @@ import sys
 
 if len(sys.argv) > 1:
     name = sys.argv[1]
-    birthday=birthdays.return_birthday(name)
+    birthday = birthdays.return_birthday(name)
     if not birthday:
         print("Sorry, we don't have {}'s birthday".format(name))
     else:
