@@ -21,6 +21,17 @@ def print_birthdays():
         print(name)
 
 def return_birthday(name):
+    """print the birthday of a person
+    
+    The birthdays dictionary contains names as keys and birthdays as values.
+    When this function is invoked, it returns the birthday of the person
+    received as a parameter.
+    
+    :param name: the name of the person
+    :type name: string
+    :return: None
+    :rtype: None
+    """
     if name in birthdays:
         print('{}\'s birthday is {}.'.format(name, birthdays[name]))
     else:
