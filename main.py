@@ -1,4 +1,4 @@
-from birthdays import return_birthday
+from birthdays_package import birthdays
 
-return_birthday('Albert Einstein')
-return_birthday('Alan Turing')
+birthdays.return_birthday('Albert Einstein')
+birthdays.return_birthday('Alan Turing')
