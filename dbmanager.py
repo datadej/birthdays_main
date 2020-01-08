@@ -1,0 +1,1 @@
+# this file will be the script managing the database and its functions
