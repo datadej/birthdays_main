@@ -1,12 +1,4 @@
-birthdays = {
-    'Albert Einstein': '03/14/1879',
-    'Benjamin Franklin': '01/17/1706',
-    'Ada Lovelace': '12/10/1815',
-    'Donald Trump': '06/14/1946',
-    'Rowan Atkinson': '01/6/1955'}
-
-
-def print_birthdays():
+def print_birthdays(people):
     """print names of people in birthdays dictionary
 
     The birthdays dictionary contains names as keys and birthdays as values.
@@ -18,11 +10,11 @@ def print_birthdays():
     """
     print('''Welcome to the birthday dictionary.
           We know the birthdays of these people:''')
-    for name in birthdays:
-        print(name)
+    for name in people.keys():
+        print(people[name])
 
 
-def return_birthday(name, verbosity):
+def return_birthday(name, people, verbosity):
     """print the birthday of a person
 
     The birthdays dictionary contains names as keys and birthdays as values.
@@ -40,8 +32,8 @@ def return_birthday(name, verbosity):
     # if the name is present in the dictionary
     if verbosity:
         print("Started looking for {}'s birthday".format(name))
-    if name in birthdays:
-        return birthdays[name]
+    if name in list(people.keys()):
+        return people[name]
     else:
         return False
     
