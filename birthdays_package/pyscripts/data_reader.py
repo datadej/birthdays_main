@@ -1,5 +1,6 @@
 import csv
 
+
 def parse_allowed_people(datafile):
     """Read people names and birthdays from csv file
 

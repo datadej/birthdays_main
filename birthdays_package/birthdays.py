@@ -36,4 +36,3 @@ def return_birthday(name, people, verbosity):
         return people[name]
     else:
         return False
-    

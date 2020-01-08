@@ -4,6 +4,7 @@ from birthdays_package.pyscripts import data_reader
 
 people_datafile = 'birthdays_package/data/people_infos.csv'
 
+
 def parse_arguments(people):
     """Parse the arguments passed by the user
 
@@ -16,7 +17,7 @@ def parse_arguments(people):
             description="Get name of someone you want to know the birthday of",
             prog="birthdays")
     # people infos can be added in the csv file in birthdays_package/data/
-    parser.add_argument("name", choices = people,
+    parser.add_argument("name", choices=people,
                         help='''The name of the person you want to know
                         the birthday of.''')
     # one level of verbosity
@@ -24,6 +25,7 @@ def parse_arguments(people):
     parser.add_argument("--version", action="version", version="1.0")
     args = parser.parse_args()
     return args
+
 
 if __name__ == "__main__":
     # get people dictionary to retrieve the allowed names
