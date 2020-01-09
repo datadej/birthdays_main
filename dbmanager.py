@@ -5,7 +5,7 @@ import argparse
 
 conn = None
 cursor = None
-
+n_hashings = 100
 
 def open_create(db_path):
     global conn
@@ -35,25 +35,42 @@ def compute_n_hashings(string, n):
 def insert_user(user_id, password):
     global conn
     global cursor
+    global n_hashings
     salt = random.randint(1, 50)
     password = str(salt) + password
-    digest = compute_n_hashings(password, 100)
+    digest = compute_n_hashings(password, n_hashings)
     cursor.execute("INSERT OR REPLACE INTO users VALUES (?,?,?)",
                    (user_id, digest, salt))
     conn.commit()
 
 
-def remove_user(user_id, password):
+def remove_user(user_id):
     global conn
     global cursor
-    cursor.execute("DELETE FROM users WHERE username = ?", (user_id,))
+    cursor.execute("DELETE FROM users WHERE id = ?", (user_id,))
     conn.commit()
+    
+def login(user_id, password):
+
+    global conn
+    global cursor
+    global n_hashings
+    rows = cursor.execute("SELECT * FROM users WHERE id=?",
+                          (user_id,))
+    conn.commit()
+    results = rows.fetchall()
+    password = str(results[0][2]) + password
+    digest = compute_n_hashings(password, n_hashings)
+    if digest == results[0][1].lower():
+        return True
+    else:
+        return False
     
 def parse_arguments():
     parser = argparse.ArgumentParser(
             description="Process user intention (add or remove new user")
             
-    parser.add_argument("action", choiches = ['add','remove'],
+    parser.add_argument("action", choices = ['add','remove'],
                         help="Add or remove user")
 
     parser.add_argument('-u', help="user id", required=True, default=None)
