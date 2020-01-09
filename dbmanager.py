@@ -1,5 +1,6 @@
 import sqlite3
 import hashlib
+import random
 
 conn = None
 cursor = None
@@ -24,3 +25,20 @@ def create_users_table():
                     password VARCHAR(255) NOT NULL,
                     salt INT NOT NULL,
                     PRIMARY KEY (id))''')
+
+def insert_user(user_id, password):
+    global conn
+    global cursor
+    salt = random.randint(1, 50)
+    password = str(salt) + password
+    digest = hashlib.sha256(password.encode('utf-8')).hexdigest()
+    cursor.execute("INSERT OR REPLACE INTO users VALUES (?,?,?)",
+                   (user_id, digest, salt))
+    conn.commit()
+
+
+def remove_user(user_id, password):
+    global conn
+    global cursor
+    cursor.execute("DELETE FROM users WHERE username = ?", (user_id,))
+    conn.commit()
