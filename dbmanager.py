@@ -7,6 +7,7 @@ conn = None
 cursor = None
 n_hashings = 100
 
+
 def open_create(db_path):
     """Open the connection to the database and create table if not exists
 
@@ -39,6 +40,7 @@ def create_users_table():
                     salt INT NOT NULL,
                     PRIMARY KEY (id))''')
 
+
 def compute_n_hashings(string, n):
     """Iterate n times the hashing funciton given a value
 
@@ -52,7 +54,8 @@ def compute_n_hashings(string, n):
     for i in range(n):
         string = hashlib.sha256(string.encode('utf-8')).hexdigest()
     return string
-    
+
+
 def insert_user(user_id, password):
     """Insert a new user in the users table
 
@@ -76,7 +79,7 @@ def insert_user(user_id, password):
 
 def remove_user(user_id):
     """Remove a user given its id
-    
+
     :param user_id: the user's id
     :type user_id: string
     :return: None
@@ -86,7 +89,8 @@ def remove_user(user_id):
     global cursor
     cursor.execute("DELETE FROM users WHERE id = ?", (user_id,))
     conn.commit()
-    
+
+
 def login(user_id, password):
     """Login function that returns True if succeeded, False otherwise.
 
@@ -111,17 +115,18 @@ def login(user_id, password):
         return True
     else:
         return False
-    
+
+
 def parse_arguments():
     """Parse the arguments passed by the user if invoked as main script
 
-    :return: args 
+    :return: args
     :rtype: list
     """
     parser = argparse.ArgumentParser(
             description="Process user intention (add or remove new user")
-            
-    parser.add_argument("action", choices = ['add','remove'],
+
+    parser.add_argument("action", choices=['add', 'remove'],
                         help="Add or remove user")
 
     parser.add_argument('-u', help="user id", required=True, default=None)
@@ -135,7 +140,7 @@ if __name__ == "__main__":
     database_path = 'birthdays_package/data/database_file.db'
     open_create(database_path)
     args = parse_arguments()
-    
+
     if args.action == 'add':
         if args.u is None or args.p is None:
             print("Please insert both username and password!")
@@ -145,4 +150,3 @@ if __name__ == "__main__":
     else:
         remove_user(args.u)
         print("Successfully removed user {}".format(args.u))
-

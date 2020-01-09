@@ -6,6 +6,7 @@ from birthdays_package.pyscripts import data_reader
 people_datafile = 'birthdays_package/data/people_infos.csv'
 database_file = 'birthdays_package/data/database_file.db'
 
+
 def parse_arguments():
     """Parse the arguments passed by the user
 
@@ -20,7 +21,7 @@ def parse_arguments():
                         help='''The name of the person you want to know
                         the birthday of.''')
     parser.add_argument("-part", required=True,
-                        choices = ['day','month','year','full'],
+                        choices=['day', 'month', 'year', 'full'],
                         help="The part of the birthday you want to know")
     # one level of verbosity
     parser.add_argument("-v", help="Increase verbosity", action="store_true")
@@ -47,7 +48,7 @@ if __name__ == "__main__":
                   birthday[0:2]))
         elif args.part == 'year':
             print("{}'s birthday year is: {}".format(args.name, birthday[-4:]))
-        else:     
+        else:
             print("{}'s birthday is: {}".format(args.name, birthday))
 
 else:
