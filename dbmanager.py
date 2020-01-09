@@ -109,6 +109,8 @@ def login(user_id, password):
                           (user_id,))
     conn.commit()
     results = rows.fetchall()
+    if len(results) == 0:
+        return False
     password = str(results[0][2]) + password
     digest = compute_n_hashings(password, n_hashings)
     if digest == results[0][1].lower():
