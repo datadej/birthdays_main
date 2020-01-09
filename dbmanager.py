@@ -8,6 +8,13 @@ cursor = None
 n_hashings = 100
 
 def open_create(db_path):
+    """Open the connection to the database and create table if not exists
+
+    :param db_path: path to the database file
+    :type db_path: string
+    :return: None
+    :rtype: None
+    """
     global conn
     global cursor
     conn = sqlite3.connect(db_path)
@@ -19,6 +26,11 @@ def open_create(db_path):
 
 
 def create_users_table():
+    """Create users table
+
+    :return: None
+    :rtype: None
+    """
     global conn
     global cursor
     cursor.execute('''CREATE TABLE users
@@ -28,11 +40,29 @@ def create_users_table():
                     PRIMARY KEY (id))''')
 
 def compute_n_hashings(string, n):
+    """Iterate n times the hashing funciton given a value
+
+    :param string: the value on which to iterate the hashing function
+    :type string: string
+    :param n: number of iterations
+    :type n: int
+    :return: None
+    :rtype: None
+    """
     for i in range(n):
         string = hashlib.sha256(string.encode('utf-8')).hexdigest()
     return string
     
 def insert_user(user_id, password):
+    """Insert a new user in the users table
+
+    :param user_id: the vid of the user
+    :type user_id: string
+    :param password: the user's password
+    :type password: string
+    :return: None
+    :rtype: None
+    """
     global conn
     global cursor
     global n_hashings
@@ -45,12 +75,28 @@ def insert_user(user_id, password):
 
 
 def remove_user(user_id):
+    """Remove a user given its id
+    
+    :param user_id: the user's id
+    :type user_id: string
+    :return: None
+    :rtype: None
+    """
     global conn
     global cursor
     cursor.execute("DELETE FROM users WHERE id = ?", (user_id,))
     conn.commit()
     
 def login(user_id, password):
+    """Login function that returns True if succeeded, False otherwise.
+
+    :param user_id: the user's id
+    :type user_id: string
+    :param password: the user's password
+    :type password: string
+    :return: True if the function has succeeded, False otherwise
+    :rtype: Boolean
+    """
 
     global conn
     global cursor
@@ -67,6 +113,11 @@ def login(user_id, password):
         return False
     
 def parse_arguments():
+    """Parse the arguments passed by the user if invoked as main script
+
+    :return: args 
+    :rtype: list
+    """
     parser = argparse.ArgumentParser(
             description="Process user intention (add or remove new user")
             
