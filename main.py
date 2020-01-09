@@ -9,9 +9,7 @@ database_file = 'birthdays_package/data/database_file.db'
 def parse_arguments():
     """Parse the arguments passed by the user
 
-    :param people: list of allowed names the user can get infos of
-    :type people: list
-    :return: arguments list
+    :return: args
     :rtype: list
     """
     parser = argparse.ArgumentParser(
