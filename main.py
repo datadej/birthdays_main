@@ -23,6 +23,8 @@ def parse_arguments():
     parser.add_argument("-part", required=True,
                         choices=['day', 'month', 'year', 'full'],
                         help="The part of the birthday you want to know")
+    parser.add_argument('-u', help="user id", required=True)
+    parser.add_argument('-p', help="user password", required=True)
     # one level of verbosity
     parser.add_argument("-v", help="Increase verbosity", action="store_true")
     parser.add_argument("--version", action="version", version="1.0")
@@ -36,21 +38,19 @@ if __name__ == "__main__":
     args = parse_arguments()
     birthday = birthdays.return_birthday(args.name, people, args.v)
     dbmanager.open_create(database_file)
-    print(args)
-    # if the person is not found in the dictionary
-    if not birthday:
-        print("Sorry, we don't have {}'s birthday".format(args.name))
-    else:
-        if args.part == 'day':
-            print("{}'s birthday day is: {}".format(args.name, birthday[3:5]))
-        elif args.part == 'month':
-            print("{}'s birthday month is: {}".format(args.name,
-                  birthday[0:2]))
-        elif args.part == 'year':
-            print("{}'s birthday year is: {}".format(args.name, birthday[-4:]))
+    if dbmanager.login(args.u, args.p):
+        # if the person is not found in the dictionary
+        if not birthday:
+            print("Sorry, we don't have {}'s birthday".format(args.name))
         else:
-            print("{}'s birthday is: {}".format(args.name, birthday))
-
-else:
-    print("Please tell me the person you want to know the birthday of.")
-    exit()
+            if args.part == 'day':
+                print("{}'s birthday day is: {}".format(args.name, birthday[3:5]))
+            elif args.part == 'month':
+                print("{}'s birthday month is: {}".format(args.name,
+                  birthday[0:2]))
+            elif args.part == 'year':
+                print("{}'s birthday year is: {}".format(args.name, birthday[-4:]))
+            else:
+                print("{}'s birthday is: {}".format(args.name, birthday))
+    else:
+        print("Username-Password combination not found")
