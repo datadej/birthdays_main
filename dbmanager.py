@@ -63,3 +63,18 @@ def parse_arguments():
     return args
 
 
+if __name__ == "__main__":
+    database_path = 'birthdays_package/data/database_file.db'
+    open_create(database_path)
+    args = parse_arguments()
+    
+    if args.action == 'add':
+        if args.u is None or args.p is None:
+            print("Please insert both username and password!")
+        else:
+            insert_user(args.u, args.p)
+            print("User {} added to the database".format(args.u))
+    else:
+        remove_user(args.u)
+        print("Successfully removed user {}".format(args.u))
+
