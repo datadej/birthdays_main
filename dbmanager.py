@@ -26,12 +26,17 @@ def create_users_table():
                     salt INT NOT NULL,
                     PRIMARY KEY (id))''')
 
+def compute_n_hashings(string, n):
+    for i in range(n):
+        string = hashlib.sha256(string.encode('utf-8')).hexdigest()
+    return string
+    
 def insert_user(user_id, password):
     global conn
     global cursor
     salt = random.randint(1, 50)
     password = str(salt) + password
-    digest = hashlib.sha256(password.encode('utf-8')).hexdigest()
+    digest = compute_n_hashings(password, 100)
     cursor.execute("INSERT OR REPLACE INTO users VALUES (?,?,?)",
                    (user_id, digest, salt))
     conn.commit()
