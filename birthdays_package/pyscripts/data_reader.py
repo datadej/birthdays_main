@@ -9,12 +9,15 @@ def parse_allowed_people(datafile):
     :return: The dictionary containing names and birthdays
     :rtype: Dictionary Object
     """
-    with open(datafile) as people_data:
-        people = {}
-        csv_reader = csv.reader(people_data)
-        next(csv_reader)
-        for row in csv_reader:
-            name = row[0]
-            birthday = row[1]
-            people[name] = birthday
-    return people
+    try:
+        with open(datafile) as people_data:
+            people = {}
+            csv_reader = csv.reader(people_data)
+            next(csv_reader)
+            for row in csv_reader:
+                name = row[0]
+                birthday = row[1]
+                people[name] = birthday
+        return people
+    except:
+        return False
