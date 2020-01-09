@@ -13,7 +13,7 @@ def open_create(db_path):
     try:
         cursor.execute("SELECT * FROM users")
     except sqlite3.OperationalError:
-        create_users_table(conn, cursor)
+        create_users_table()
 
 
 def create_users_table():

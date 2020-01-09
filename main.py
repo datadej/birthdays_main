@@ -33,13 +33,13 @@ if __name__ == "__main__":
     people = data_reader.parse_allowed_people(people_datafile)
     args = parse_arguments(list(people.keys()))
     birthday = birthdays.return_birthday(args.name, people, args.v)
-    db.open_and_create(database_file)
+    dbmanager.open_create(database_file)
     print(args)
     # if the person is not found in the dictionary
     if not birthday:
         print("Sorry, we don't have {}'s birthday".format(args.name))
     else:
-        print("{}' birthday is: {}".format(args.name, birthday))
+        print("{}'s birthday is: {}".format(args.name, birthday))
 
 else:
     print("Please tell me the person you want to know the birthday of.")
