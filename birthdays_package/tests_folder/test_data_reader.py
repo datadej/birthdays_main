@@ -17,7 +17,7 @@ class Test_data_reader(unittest.TestCase):
     def test_file_is_not_csv(self):
         df = parse_allowed_people(datafile=self.tmp_file)
         self.assertFalse(df)
-        
+
     def test_no_datafile(self):
         df = parse_allowed_people(datafile="/tmp/file_that_does_not_exist")
         self.assertFalse(df)
