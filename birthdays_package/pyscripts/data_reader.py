@@ -2,7 +2,7 @@ import csv
 
 
 def parse_allowed_people(datafile):
-    """Read people names and birthdays from csv file
+    """Read celebrities' name and birthday from csv file given its path
 
     :param datafile: the path to the csv file
     :type datafile: string

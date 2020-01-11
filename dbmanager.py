@@ -9,7 +9,7 @@ n_hashings = 100
 
 
 def open_create(db_path):
-    """Open the connection to the database and create table if not exists
+    """Open the connection to the database (.db) and create table if not exists
 
     :param db_path: path to the database file
     :type db_path: string
@@ -27,7 +27,7 @@ def open_create(db_path):
 
 
 def create_users_table():
-    """Create users table
+    """Create users table (id, password, salt)
 
     :return: None
     :rtype: None
@@ -42,11 +42,11 @@ def create_users_table():
 
 
 def compute_n_hashings(string, n):
-    """Iterate n times the hashing funciton given a value
+    """Iterate n times the hashing funciton given a string value (password)
 
     :param string: the value on which to iterate the hashing function
     :type string: string
-    :param n: number of iterations
+    :param n: number of iterations to apply
     :type n: int
     :return: None
     :rtype: None
@@ -59,7 +59,7 @@ def compute_n_hashings(string, n):
 def insert_user(user_id, password):
     """Insert a new user in the users table
 
-    :param user_id: the vid of the user
+    :param user_id: the id of the user
     :type user_id: string
     :param password: the user's password
     :type password: string
@@ -78,7 +78,7 @@ def insert_user(user_id, password):
 
 
 def remove_user(user_id):
-    """Remove a user given its id
+    """Remove a user from the users' table given its id
 
     :param user_id: the user's id
     :type user_id: string
@@ -92,7 +92,7 @@ def remove_user(user_id):
 
 
 def login(user_id, password):
-    """Login function that returns True if succeeded, False otherwise.
+    """Authentication is required to perform basic actions
 
     :param user_id: the user's id
     :type user_id: string

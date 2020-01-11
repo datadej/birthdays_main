@@ -8,7 +8,7 @@ database_file = 'birthdays_package/data/database_file.db'
 
 
 def parse_arguments():
-    """Parse the arguments passed by the user
+    """Parse the arguments passed by the user (both positional and optionals)
 
     :return: args
     :rtype: list
