@@ -19,5 +19,5 @@ def parse_allowed_people(datafile):
                 birthday = row[1]
                 people[name] = birthday
         return people
-    except:
+    except Exception:
         return False

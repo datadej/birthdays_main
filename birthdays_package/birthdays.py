@@ -15,7 +15,7 @@ def print_birthdays(people):
 
 
 def return_birthday(name, people, verbosity):
-    """print the birthday of a celebrity 
+    """print the birthday of a celebrity
 
     The birthdays dictionary contains names as keys and birthdays as values.
     When this function is invoked, it returns the birthday of the person

@@ -44,12 +44,14 @@ if __name__ == "__main__":
             print("Sorry, we don't have {}'s birthday".format(args.name))
         else:
             if args.part == 'day':
-                print("{}'s birthday day is: {}".format(args.name, birthday[3:5]))
+                print("{}'s birthday day is: {}".format(args.name,
+                                                        birthday[3:5]))
             elif args.part == 'month':
                 print("{}'s birthday month is: {}".format(args.name,
-                  birthday[0:2]))
+                                                          birthday[0:2]))
             elif args.part == 'year':
-                print("{}'s birthday year is: {}".format(args.name, birthday[-4:]))
+                print("{}'s birthday year is: {}".format(args.name,
+                                                         birthday[-4:]))
             else:
                 print("{}'s birthday is: {}".format(args.name, birthday))
     else:
